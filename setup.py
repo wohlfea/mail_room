@@ -6,6 +6,7 @@ setup(
     version=0.1,
     author='AJ Wohlfert and Kyle Richardson',
     license='MIT',
-    py_modules=[],
+    py_modules=['mail_room'],
     packages_dir={'': 'src'},
+    extras_require={'test': ['pytest', 'pytest-xdist', 'tox']}
 )

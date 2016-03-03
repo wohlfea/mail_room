@@ -7,29 +7,14 @@ POSSIBLE_INPUT = [
     (('2', ['a', 'b', 'c']), False)
 ]
 
-TEST_STR = '''
+TEST_STR = u'''
 ----------
 George T.:
     Total Donated: $147.50
     Number of Donations: 4
-    Average Donation: $36.87
-----------
-Rebecca L.:
-    Total Donated: $4253.95
-    Number of Donations: 3
-    Average Donation: $1417.98
-----------
-Manny B.:
-    Total Donated: $17.35
-    Number of Donations: 4
-    Average Donation: $4.33
-'''
-EXAMPLE_DICTS = [
-    {'George T.': [12.50, 10.00, 25.00, 100.00],
-     'Rebecca L.': [250.00, 1003.00, 3000.95],
-     'Manny B.': [1.05, 2.50, 4.00, 9.80]},
-    TEST_STR
-]
+    Average Donation: $36.88'''
+
+EXAMPLE_DICTS = [({'George T.': [12.50, 10.00, 25.00, 100.00]}, TEST_STR)]
 
 
 @pytest.mark.parametrize('args, result', POSSIBLE_INPUT)
@@ -41,4 +26,5 @@ def test_input_check(args, result):
 @pytest.mark.parametrize('dict, result', EXAMPLE_DICTS)
 def test_create(dict, result):
     from mail_room import create
+    print(create(dict))
     assert create(dict) == result

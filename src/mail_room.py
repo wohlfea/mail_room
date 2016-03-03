@@ -1,20 +1,19 @@
 import sys
-
+import string
 
 donor_list = {
     'Carl D.': [1.25, 3.50, 7.20, 9.90, 10.00],
-    'Manuel R.': [75.00, 99.50, 25.00, 80.00],
+    'Manuel R.': [75.00, 9999.50, 25.00, 80.00],
     'Eddie T.': [20.00, 40.50, 75.00, 99.00],
     'Ronaldo V.': [25.00, 25.00, 25.00, 25.00, 25.00, 25.00, 25.00, 25.00]
 }
 
-REPORT_STR = '''
+REPORT_STR = u'''
 ----------
 {}:
-Total Donated: ${}
-Number of Donations: {}
-Average Donation: ${}
-'''
+    Total Donated: ${:,.2f}
+    Number of Donations: {}
+    Average Donation: ${:,.2f}'''
 
 
 def input_check(user_input, valid_opts):

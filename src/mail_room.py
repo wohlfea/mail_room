@@ -1,5 +1,7 @@
 import sys
 import string
+from builtins import input
+
 
 donor_list = {
     u'Carl D.': [1.25, 3.50, 7.20, 9.90, 10.00],
@@ -17,7 +19,9 @@ REPORT_STR = u'''
 
 THANK_YOU_STR = u'''
 Dear {},
-    Thank you very much for your donation of ${:,.2f}
+    Thank you very much for your donation of ${:,.2f}.
+    This means you have donated a total amount of ${:,.2f}!
+    Your money goes a long way to funding the Code Fellows Tuition.
 
     Sincerely,
     AJ & Kyle'''
@@ -48,7 +52,7 @@ def create(donor_list):
 
 def send():
     while True:
-        user_input = raw_input(u'Who are we thanking?'
+        user_input = input(u'Who are we thanking?'
                                '(type "[L]ist" for current donors)\n')
         if user_input.lower() == u'r':
             break
@@ -67,12 +71,13 @@ def thank_you(name, donation, donor_list):
         return ''
     else:
         donor_list.setdefault(name, []).append(float(donation))
-        return THANK_YOU_STR.format(name, float(donation))
+        return THANK_YOU_STR.format(name, float(donation),
+                                    float(sum(donor_list[name])))
 
 
 def valid_float():
     while True:
-        user_input = raw_input(u'Enter the donation ammount.\n')
+        user_input = input(u'Enter the donation ammount.\n')
         try:
             rtn_float = '{:.2f}'.format(float(user_input))
             return rtn_float
@@ -81,6 +86,9 @@ def valid_float():
                 sys.exit()
             elif user_input.lower() == 'r':
                 return ''
+            else:
+                print('"{}" is an invalid donation amount.'.format(user_input))
+
 
 def main(user_input):
     if user_input.lower() == u'c':
@@ -94,7 +102,9 @@ def main(user_input):
 
 
 def menu():
-    user_input = raw_input(u'Would you like to [S]end a Thank-You or [C]reate a report?\n')
+    user_input = input(u'Would you like to [S]end a Thank-You or '
+                           '[C]reate a report?\nPress [Q] At any time to quit.'
+                           ' Press [R] at any time to return to this menu.\n')
     if input_check(user_input, [u's', u'c', u'q', u'r']):
         return main(user_input)
     else:

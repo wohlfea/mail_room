@@ -8,5 +8,6 @@ setup(
     license='MIT',
     py_modules=['mail_room'],
     packages_dir={'': 'src'},
+    install_requires=['future'],
     extras_require={'test': ['pytest', 'pytest-xdist', 'tox']}
 )

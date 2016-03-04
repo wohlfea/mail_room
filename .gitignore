@@ -65,4 +65,3 @@ bin/
 lib/
 include/
 pip-selfcheck.json
-tox.ini

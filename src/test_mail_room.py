@@ -22,7 +22,9 @@ George T.:
 
 TEST_LETTER = u'''
 Dear George T.,
-    Thank you very much for your donation of $2.50
+    Thank you very much for your donation of $2.50.
+    This means you have donated a total amount of $2.50!
+    Your money goes a long way to funding the Code Fellows Tuition.
 
     Sincerely,
     AJ & Kyle'''

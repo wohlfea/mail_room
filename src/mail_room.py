@@ -1,5 +1,4 @@
 import sys
-import string
 from builtins import input
 
 
@@ -25,6 +24,7 @@ Dear {},
 
     Sincerely,
     AJ & Kyle'''
+
 
 def input_check(user_input, valid_opts):
     if user_input.lower() in valid_opts:
@@ -53,7 +53,7 @@ def create(donor_list):
 def send():
     while True:
         user_input = input(u'Who are we thanking?'
-                               '(type "[L]ist" for current donors)\n')
+                           '(type "[L]ist" for current donors)\n')
         if user_input.lower() == u'r':
             break
         elif user_input.lower() == u'q':
@@ -103,8 +103,8 @@ def main(user_input):
 
 def menu():
     user_input = input(u'Would you like to [S]end a Thank-You or '
-                           '[C]reate a report?\nPress [Q] At any time to quit.'
-                           ' Press [R] at any time to return to this menu.\n')
+                       '[C]reate a report?\nPress [Q] At any time to quit.'
+                       ' Press [R] at any time to return to this menu.\n')
     if input_check(user_input, [u's', u'c', u'q', u'r']):
         return main(user_input)
     else:

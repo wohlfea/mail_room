@@ -17,7 +17,7 @@ REPORT_STR = u'''
 
 THANK_YOU_STR = u'''
 Dear {},
-    Thank you very much for your donation of ${}
+    Thank you very much for your donation of ${:,}
 
     Sincerely,
     AJ & Kyle'''
@@ -59,7 +59,7 @@ def thank_you(name, donation, donor_list):
         return ''
     else:
         donor_list.setdefault(name, []).append(float(donation))
-        return THANK_YOU_STR.format(name, donation)
+        return THANK_YOU_STR.format(name, float(donation))
 
 
 def valid_float():

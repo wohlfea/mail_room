@@ -15,6 +15,12 @@ REPORT_STR = u'''
     Number of Donations: {}
     Average Donation: ${:,.2f}'''
 
+THANK_YOU_STR = u'''
+Dear {},
+    Thank you very much for your donation of ${}
+
+    Sincerely,
+    AJ & Kyle'''
 
 def input_check(user_input, valid_opts):
     if user_input.lower() in valid_opts:
@@ -44,13 +50,16 @@ def send():
             for person in donor_list:
                 print(person)
         else:
-            print(valid_float())
-            #print(thank_you(user_input, valid_float()))
+            print(thank_you(user_input, valid_float(), donor_list))
             break
 
-def thank_you(name, donation):
+
+def thank_you(name, donation, donor_list):
     if donation == '':
         return ''
+    else:
+        donor_list.setdefault(name, []).append(float(donation))
+        return THANK_YOU_STR.format(name, donation)
 
 
 def valid_float():
@@ -63,7 +72,7 @@ def valid_float():
             if user_input.lower() == 'q':
                 sys.exit()
             elif user_input.lower() == 'r':
-                return ''  
+                return ''
 
 def main(user_input):
     if user_input.lower() == u'c':

@@ -1,5 +1,11 @@
 import pytest
 
+
+SAMPLE_LIST = {
+    u'Tommy C.': [4.25, 3.50, 72.20, 19.90, 10.00],
+    u'Bobby B.': [9.00, 20.50, 25.00, 40.00],
+}
+
 POSSIBLE_INPUT = [
     (('c', ['c', 's']), True),
     (('Q', ['q', 'r']), True),
@@ -14,7 +20,16 @@ George T.:
     Number of Donations: 4
     Average Donation: $36.88'''
 
+TEST_LETTER = u'''
+Dear George T.,
+    Thank you very much for your donation of $2.50
+
+    Sincerely,
+    AJ & Kyle'''
+
 EXAMPLE_DICTS = [({'George T.': [12.50, 10.00, 25.00, 100.00]}, TEST_STR)]
+THANK_YOUS = [(('George T.', '2.50', SAMPLE_LIST), TEST_LETTER)]
+
 
 
 @pytest.mark.parametrize('args, result', POSSIBLE_INPUT)
@@ -22,9 +37,17 @@ def test_input_check(args, result):
     from mail_room import input_check
     assert input_check(*args) == result
 
-def test_valid_float():
-    from mail_room import valid_float
-    assert type(valid_float()) is str
+
+@pytest.mark.parametrize('args, result', THANK_YOUS)
+def test_thank_you(args, result):
+    from mail_room import thank_you
+    try:
+        old = len(SAMPLE_LIST[args[0]])
+    except KeyError:
+        old = 0
+    assert thank_you(*args) == result
+    assert len(SAMPLE_LIST[args[0]]) > old
+
 
 @pytest.mark.parametrize('dict, result', EXAMPLE_DICTS)
 def test_create(dict, result):

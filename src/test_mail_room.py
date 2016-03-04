@@ -22,6 +22,9 @@ def test_input_check(args, result):
     from mail_room import input_check
     assert input_check(*args) == result
 
+def test_valid_float():
+    from mail_room import valid_float
+    assert type(valid_float()) is str
 
 @pytest.mark.parametrize('dict, result', EXAMPLE_DICTS)
 def test_create(dict, result):

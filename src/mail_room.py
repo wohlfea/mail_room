@@ -17,7 +17,7 @@ REPORT_STR = u'''
 
 THANK_YOU_STR = u'''
 Dear {},
-    Thank you very much for your donation of ${:,}
+    Thank you very much for your donation of ${:,.2f}
 
     Sincerely,
     AJ & Kyle'''
@@ -29,9 +29,17 @@ def input_check(user_input, valid_opts):
         return False
 
 
+def ordered_names(donor_list):
+    ordered = []
+    for p in donor_list:
+        ordered.append((sum(donor_list[p]), p))
+    ordered.sort(reverse=True)
+    return [p[1] for p in ordered]
+
+
 def create(donor_list):
     results = ''''''
-    for person in donor_list:
+    for person in ordered_names(donor_list):
         total = sum(donor_list[person])
         how_many = len(donor_list[person])
         results += REPORT_STR.format(person, total, how_many, total / how_many)

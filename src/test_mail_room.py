@@ -33,7 +33,6 @@ EXAMPLE_DICTS = [({'George T.': [12.50, 10.00, 25.00, 100.00]}, TEST_STR)]
 THANK_YOUS = [(('George T.', '2.50', SAMPLE_LIST), TEST_LETTER)]
 
 
-
 @pytest.mark.parametrize('args, result', POSSIBLE_INPUT)
 def test_input_check(args, result):
     from mail_room import input_check

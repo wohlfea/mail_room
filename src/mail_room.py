@@ -27,6 +27,7 @@ Dear {},
 
 
 def input_check(user_input, valid_opts):
+    """Validate the user input."""
     if user_input.lower() in valid_opts:
         return True
     else:
@@ -34,6 +35,7 @@ def input_check(user_input, valid_opts):
 
 
 def ordered_names(donor_list):
+    """Order donors by total donation amount."""
     ordered = []
     for p in donor_list:
         ordered.append((sum(donor_list[p]), p))
@@ -42,6 +44,7 @@ def ordered_names(donor_list):
 
 
 def create(donor_list):
+    """Generate a completed report of all donors ordered by donation amount."""
     results = ''''''
     for person in ordered_names(donor_list):
         total = sum(donor_list[person])
@@ -51,6 +54,8 @@ def create(donor_list):
 
 
 def send():
+    """Gather information about who we are thanking, print donor list
+    if requested, or print the completed thank you letter to the screen."""
     while True:
         user_input = input(u'Who are we thanking?'
                            '(type "[L]ist" for current donors)\n')
@@ -67,6 +72,7 @@ def send():
 
 
 def thank_you(name, donation, donor_list):
+    """Return either an empty string or the completed Thank You letter."""
     if donation == '':
         return ''
     else:
@@ -76,6 +82,7 @@ def thank_you(name, donation, donor_list):
 
 
 def valid_float():
+    """Verify that user input is a valid donation amount."""
     while True:
         user_input = input(u'Enter the donation ammount.\n')
         try:
@@ -91,6 +98,7 @@ def valid_float():
 
 
 def main(user_input):
+    """Route user appropriately based on input."""
     if user_input.lower() == u'c':
         print(create(donor_list))
     elif user_input.lower() == u's':
@@ -102,6 +110,7 @@ def main(user_input):
 
 
 def menu():
+    """Take user input, validate it, and either prompt again or move on."""
     user_input = input(u'Would you like to [S]end a Thank-You or '
                        '[C]reate a report?\nPress [Q] At any time to quit.'
                        ' Press [R] at any time to return to this menu.\n')
@@ -109,6 +118,7 @@ def menu():
         return main(user_input)
     else:
         print('Please enter valid input.')
+
 
 if __name__ == '__main__':
 
